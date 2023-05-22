@@ -18,18 +18,24 @@ class ViewController: UIViewController {
 
 
 }
+//mark:datasource protocol
 extension ViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
         
-    }//reuse every row
+    }//reuse every cell thats in the tablerow
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        cell.textLabel?.text = "I am a cell"
+        cell.textLabel?.text = "I am a row number: \(indexPath.row)"
         return cell
     }
     
     
+}
+extension   ViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("you have clicked row number: \(indexPath.row)")
+    }
 }
 
